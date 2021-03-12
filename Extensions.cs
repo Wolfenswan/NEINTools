@@ -32,8 +32,24 @@ namespace NEINGames.Extensions
         }
     }
 
-    public static class ColliderExtensions
+    public static class Collider2DExtensions
     {   
+        public static bool IsTouchingObject(this Collider2D collider, GameObject obj, bool enabledOnly = false)
+        {   
+            Collider2D[] colliders = obj.GetComponents<Collider2D>();
+
+            if (colliders.Length == 0)
+                Debug.LogError("Collider2DExtensions.IsTouchingObject: No Colliders2D found on object: " + obj);
+
+            foreach (var c in colliders)
+            {
+                if (collider.IsTouching(c) && (!enabledOnly || (enabledOnly && c.enabled)))
+                    return true;
+            }
+            return false;
+            
+        }
+
         public static Vector2 PointToWorldPos(this EdgeCollider2D collider, int pointID)
         // Returns the world-position of a given EdgeCollider's point
         {   
@@ -179,6 +195,19 @@ namespace NEINGames.Extensions
             var tr = joint.gameObject.transform;
             var scale = joint.gameObject.transform.localScale;
             return new Vector2(tr.position.x + joint.anchor.x * scale.x, tr.position.y + joint.anchor.y * scale.y);            
+        }
+    }
+
+    static class Collision2DExtensions { 
+        public static float GetImpactForce (this Collision2D collision) {
+            // https://www.malgol.com/how-to-get-the-impact-force-of-a-collision-in-unity/
+            float impulse = 0F;
+
+            foreach (ContactPoint2D point in collision.contacts) {
+                impulse += point.normalImpulse;
+            }
+
+            return impulse / Time.fixedDeltaTime;
         }
     }
 }
