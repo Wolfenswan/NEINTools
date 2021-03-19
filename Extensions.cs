@@ -23,8 +23,6 @@ namespace NEINGames.Extensions
             int j = Array.IndexOf<T>(Arr, src) + 1;
             return (Arr.Length==j) ? Arr[0] : Arr[j];            
         }
-
-        public static int GetLength<T>(this T src) where T : Enum => Enum.GetNames(src.GetType()).Length;
     }
 
     public static class CameraExtensions
