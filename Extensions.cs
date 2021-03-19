@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -21,6 +23,8 @@ namespace NEINGames.Extensions
             int j = Array.IndexOf<T>(Arr, src) + 1;
             return (Arr.Length==j) ? Arr[0] : Arr[j];            
         }
+
+        public static int GetLength<T>(this T src) where T : Enum => Enum.GetNames(src.GetType()).Length;
     }
 
     public static class CameraExtensions
@@ -62,6 +66,15 @@ namespace NEINGames.Extensions
     public static class GameObjectExtensions
     {
         public static bool IsInCameraViewport(this GameObject obj, Camera camera) => camera.IsPositionInViewport(obj.transform.position);
+
+        public static bool IsPlayer(this GameObject obj)
+        {   
+            // Assumes existence of a specific PlayerController component
+            if (obj.GetComponent<PlayerController>())
+                return true;
+            else
+                return false;
+        }
 
         public static List<GameObject> GetAllChildren(this GameObject parent)
         {   

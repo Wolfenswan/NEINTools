@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,7 +32,7 @@ namespace NEINGames.Utilities
             return remDistance;
         }
 
-        public static Vector2 GetOffsetPointWithRotation(Vector2 origin, float offset, float angle, bool degree=true)
+        public static Vector2 GetOffsetPointFromAngle(Vector2 origin, float offset, float angle, bool degree=true)
         {   
             // https://math.stackexchange.com/questions/143932/calculate-point-given-x-y-angle-and-distance
             if (degree) angle = angle * Mathf.Deg2Rad;
@@ -64,5 +66,10 @@ namespace NEINGames.Utilities
                 }
             return true;
         }
+    }
+
+    public static class EnumUtitlities
+    {
+        public static int GetLength(Type enumType) => Enum.GetNames(enumType).Length;
     }
 }
