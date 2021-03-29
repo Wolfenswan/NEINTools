@@ -8,7 +8,7 @@ public class TagSelectorAttribute : PropertyAttribute
 {
     public bool UseDefaultTagFieldDrawer = false;
 }
-
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(TagSelectorAttribute))]
 public class TagSelectorPropertyDrawer : PropertyDrawer
 {
@@ -78,3 +78,4 @@ public class TagSelectorPropertyDrawer : PropertyDrawer
         }
     }
 }
+#endif
