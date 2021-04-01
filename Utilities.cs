@@ -1,11 +1,15 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace NEINGames.Utilities
 {
 
-    public static class Vector2Utilities {
+    public static class Vector2Utilities 
+    {
 
         public static float GetDegreesBetweenVectors(Vector2 origin, Vector2 target)
         {
@@ -70,5 +74,37 @@ namespace NEINGames.Utilities
     public static class EnumUtitlities
     {
         public static int GetLength(Type enumType) => Enum.GetNames(enumType).Length;
+    }
+
+    public static class RaycastUtilities
+    {
+        public static bool IsPoint2DOverElementWithTag(Vector2 position, string tag)
+        //! This is expensive and can probably be made more performant
+        // Adapted from http://answers.unity.com/answers/1748972/view.html
+        {
+            PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+            eventDataCurrentPosition.position = position;
+            List<RaycastResult> results = new List<RaycastResult>();
+            EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+            return results.Count(obj => obj.gameObject.tag == tag) > 0;
+        }
+    }
+
+    public static class CoRoutineUtilities
+    {
+        public static IEnumerator DoOverTime(float defaultDuration, Action doWhileLooping, float timeStep = -1, Action doAfterLoop = null, Func<bool> breakCondition = null)
+        //! Untested, just an idea
+        {
+            var elapsedTime = 0.0f;
+            while (elapsedTime < defaultDuration)
+            {
+                yield return new WaitForEndOfFrame();
+                elapsedTime += timeStep>0?timeStep:Time.deltaTime;
+                doWhileLooping.Invoke();
+                if (breakCondition != null)
+                    if (breakCondition()) break;
+            }
+            doAfterLoop?.Invoke();
+        }
     }
 }

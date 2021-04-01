@@ -62,15 +62,6 @@ namespace NEINGames.Extensions
     {
         public static bool IsInCameraViewport(this GameObject obj, Camera camera) => camera.IsPositionInViewport(obj.transform.position);
 
-        // public static bool IsPlayer(this GameObject obj)
-        // {   
-        //     // Assumes existence of a specific PlayerController component
-        //     if (obj.GetComponent<PlayerController>())
-        //         return true;
-        //     else
-        //         return false;
-        // }
-
         public static List<GameObject> GetAllChildren(this GameObject parent)
         {   
             List<GameObject> children = new List<GameObject>();
