@@ -1,5 +1,8 @@
 using UnityEngine;
 
+// FROM: Unity Physics demo
+// TODO: improve code (e.g. Camera.main call)
+
 /// <summary>
 /// Drag a Rigidbody2D by selecting one of its colliders by pressing the mouse down.
 /// When the collider is selected, add a TargetJoint2D.
@@ -24,7 +27,7 @@ public class DragTarget : MonoBehaviour
 	void Update ()
 	{
 		// Calculate the world position for the mouse.
-		var worldPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		var worldPos = Camera.main.ScreenToWorldPoint (Input.mousePosition); // TODO bad. move to a cache before ever deploying this script
 
 		if (Input.GetMouseButtonDown (0))
 		{
