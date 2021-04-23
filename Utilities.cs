@@ -90,7 +90,7 @@ namespace NEINGames.Utilities
         }
     }
 
-    public static class CoRoutineUtilities
+    public static class CoroutineUtilities
     {
         public static IEnumerator DoOverTime(float defaultDuration, Action doWhileLooping, float timeStep = -1, Action doAfterLoop = null, Func<bool> breakCondition = null)
         //! Untested, just an idea

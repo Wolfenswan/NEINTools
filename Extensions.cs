@@ -62,6 +62,9 @@ namespace NEINGames.Extensions
     {
         public static bool IsInCameraViewport(this GameObject obj, Camera camera) => camera.IsPositionInViewport(obj.transform.position);
 
+        // IsPlayer assumes existing of the "Player" tag. It is only a shorthand, nothing fancy here.
+        public static bool IsPlayer(this GameObject obj) => obj.tag == "Player";
+
         public static List<GameObject> GetAllChildren(this GameObject parent)
         {   
             List<GameObject> children = new List<GameObject>();
@@ -73,18 +76,22 @@ namespace NEINGames.Extensions
             return children;
         }
 
-        public static void DestroyAllChildren(this GameObject parent, bool editor = false)
+        public static void DestroyAllChildren(this GameObject parent, bool editorMode = false, List<string> exemptTags = null)
         {   
             // Due to quirks in the Transform IEnumerator, deleting the items directly from the foreach loop will produce odd results
             // as explained here: https://answers.unity.com/questions/1256205/how-to-destroy-and-remove-all-children-from-an-obj.html?childToView=1256363#comment-1256363
             // Using a temporary list to store all children and then delete them does circumvent the issue
             List<GameObject> children = parent.GetAllChildren();
+
+            exemptTags = exemptTags ?? new List<string>();
+            
             foreach (var c in children)
             {
-                if(!editor)
-                    GameObject.Destroy(c);
-                else
-                    GameObject.DestroyImmediate(c);
+                if (!exemptTags.Contains(c.tag))
+                    if(!editorMode)
+                        GameObject.Destroy(c);
+                    else
+                        GameObject.DestroyImmediate(c);
             }
         }
 
