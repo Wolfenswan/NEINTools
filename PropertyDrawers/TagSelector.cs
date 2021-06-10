@@ -3,11 +3,13 @@ using UnityEditor;
 using System.Collections.Generic;
  
 // http://www.brechtos.com/tagselectorattribute/
+// Use [TagSelector] to indicate a drawer
 
 public class TagSelectorAttribute : PropertyAttribute
 {
     public bool UseDefaultTagFieldDrawer = false;
 }
+
 #if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(TagSelectorAttribute))]
 public class TagSelectorPropertyDrawer : PropertyDrawer

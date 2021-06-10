@@ -69,6 +69,18 @@ namespace NEINGames.Utilities
                 }
             return true;
         }
+
+        public static IEnumerable<TValue> RandomValues<TKey, TValue>(IDictionary<TKey, TValue> dict)
+        {
+            // https://stackoverflow.com/posts/1028324/revisions
+            System.Random rand = new System.Random();
+            List<TValue> values = Enumerable.ToList(dict.Values);
+            int size = dict.Count;
+            while(true)
+            {
+                yield return values[rand.Next(size)];
+            }
+        }
     }
 
     public static class EnumUtitlities
