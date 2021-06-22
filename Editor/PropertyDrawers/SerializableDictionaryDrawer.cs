@@ -4,11 +4,11 @@ using UnityEditor;
 using UnityEngine;
 using UnityObject = UnityEngine.Object;
 
-namespace NEINGames.Dictionary 
+namespace NEINGames.Collections
 {
 
     #if UNITY_EDITOR
-    public abstract class DictionaryDrawer<TK, TV> : PropertyDrawer
+    public abstract class SerializableDictionaryDrawer<TK, TV> : PropertyDrawer
     {
         private SerializableDictionary<TK, TV> _Dictionary;
         private bool _Foldout;
