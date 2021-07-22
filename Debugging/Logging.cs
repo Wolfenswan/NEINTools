@@ -1,8 +1,9 @@
 using UnityEngine;
 using System.Reflection;
 
-namespace NEINGames
+namespace NEINGames.Debugging
 {
+    #if UNITY_EDITOR
     public static class Logging
     {
         // TODO Generic Error & Info functions to improve on default unity logging.
@@ -30,4 +31,5 @@ namespace NEINGames
             Debug.Log(debugString);
         }
     }
+    #endif
 }
