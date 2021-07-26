@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NEINGames.Utilities;
 
-// more extensions:
+// more extension ideas:
 // https://gist.github.com/omgwtfgames/f917ca28581761b8100f
 // https://github.com/dracolytch/DracoSoftwareExtensionsForUnity
 
@@ -177,7 +177,7 @@ namespace NEINGames.Extensions
 
     public static class Vector2Extensions
     {   
-        // Makes more sense as a utility?
+        //* NOTE: Makes more sense as a utility?
         public static Vector2 MovePast(this Vector2 start, Vector2 end, float distance) => (end-start) * distance + end;
     }
 
@@ -204,7 +204,8 @@ namespace NEINGames.Extensions
         }
     }
 
-    static class Collision2DExtensions { 
+    static class Collision2DExtensions 
+    { 
         public static float GetImpactForce (this Collision2D collision) {
             // https://www.malgol.com/how-to-get-the-impact-force-of-a-collision-in-unity/
             float impulse = 0F;

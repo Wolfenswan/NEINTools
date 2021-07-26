@@ -7,7 +7,6 @@ namespace NEINGames.Debugging
     public static class Logging
     {
         // TODO Generic Error & Info functions to improve on default unity logging.
-
         public static void ListFields(string intro, dynamic obj)
         {
             string debugString = $"{intro}";
