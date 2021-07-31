@@ -204,7 +204,8 @@ namespace NEINGames.Extensions
         }
     }
 
-    static class Collision2DExtensions { 
+    static class Collision2DExtensions 
+    { 
         public static float GetImpactForce (this Collision2D collision) {
             // https://www.malgol.com/how-to-get-the-impact-force-of-a-collision-in-unity/
             float impulse = 0F;
@@ -214,6 +215,39 @@ namespace NEINGames.Extensions
             }
 
             return impulse / Time.fixedDeltaTime;
+        }
+    }
+
+    static class DictionaryExtensions
+    {   
+        public static string ToStringKeys(this Dictionary<dynamic, dynamic> dict)
+        {
+            string text = "";
+            foreach (var item in dict.Keys)
+            {
+                text += $"{item} |";
+            }
+            return text;
+        }
+
+        public static string ToStringValues(this Dictionary<dynamic, dynamic> dict)
+        {
+            string text = "";
+            foreach (var item in dict.Values)
+            {
+                text += $"{item} |";
+            }
+            return text;
+        }
+
+        public static string ToStringFull(this Dictionary<dynamic, dynamic> dict)
+        {
+            string text = "";
+            foreach (var item in dict)
+            {
+                text += $"{item.Key}:{item.Value} |";
+            }
+            return text;
         }
     }
 
