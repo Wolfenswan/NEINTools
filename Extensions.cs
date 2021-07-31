@@ -218,4 +218,37 @@ namespace NEINGames.Extensions
         }
     }
 
+    static class DictionaryExtensions
+    {   
+        public static string ToStringKeys(this Dictionary<dynamic, dynamic> dict)
+        {
+            string text = "";
+            foreach (var item in dict.Keys)
+            {
+                text += $"{item} |";
+            }
+            return text;
+        }
+
+        public static string ToStringValues(this Dictionary<dynamic, dynamic> dict)
+        {
+            string text = "";
+            foreach (var item in dict.Values)
+            {
+                text += $"{item} |";
+            }
+            return text;
+        }
+
+        public static string ToStringFull(this Dictionary<dynamic, dynamic> dict)
+        {
+            string text = "";
+            foreach (var item in dict)
+            {
+                text += $"{item.Key}:{item.Value} |";
+            }
+            return text;
+        }
+    }
+
 }

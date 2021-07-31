@@ -3,7 +3,6 @@ using UnityEngine;
 using System;
 
 // The GFXController2D allows easier manipulation of attached SpriteRenderer & Animator components.
-
 [RequireComponent (typeof(SpriteRenderer), typeof(Animator))]
 public class GFXController2D : MonoBehaviour 
 {

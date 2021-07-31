@@ -1,13 +1,15 @@
 using UnityEngine;
 using System.Reflection;
+using System.Collections.Generic;
 
+// TODO rework; make output string instead of logging
 namespace NEINGames.Debugging
 {
     #if UNITY_EDITOR
     public static class Logging
     {
         // TODO Generic Error & Info functions to improve on default unity logging.
-        public static void ListFields(string intro, dynamic obj)
+        public static void ListFields(string intro, object obj)
         {
             string debugString = $"{intro}";
 
