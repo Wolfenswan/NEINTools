@@ -2,6 +2,10 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
+// I use this CollisionController for easier and more granular collision detection in 2D games
+// It's used in conjunction with RaycasterGroups which each check for one specific collision type, identified by its CollisionID
+// The preferred method is adding a CollisionController as component or child-object to a gameobject
+// The parent's object controller can then update the CollisionController as necessary and retrieve collision states as needed
 public class CollisionController : MonoBehaviour 
 {
     [SerializeField] bool _debugLog = false;

@@ -20,9 +20,12 @@ public enum RequiredCollisionCount
     SECOND_HALF,
 }
 
-// ! Test how direction relates to parent object orientation & movement
+// RaycasterGroups sent out a number of Raycasts away from a plane indicated by an EdgeCollider2D
+// They check for collisions according to the settings in the fields exposed in the editor
+// They are then read by the CollisionController and passed on to whichever method or class requested updated collision states
 
-// TODO Instead of using debug rays -> OnDrawGizmos() https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDrawGizmos.html
+// TODO 
+// Instead of using debug rays -> OnDrawGizmos() https://docs.unity3d.com/ScriptReference/MonoBehaviour.OnDrawGizmos.html
 [RequireComponent (typeof(EdgeCollider2D))]
 public class RaycasterGroup : MonoBehaviour
 {
