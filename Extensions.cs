@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
 using NEINGames.Utilities;
@@ -9,6 +10,19 @@ using NEINGames.Utilities;
 
 namespace NEINGames.Extensions
 {
+    public static class ObjectExtensions
+    {
+        public static string FieldsToStrings(this object obj)
+        {
+            string fieldStr = "";
+            foreach (FieldInfo item in obj.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
+            {
+                fieldStr += $" {item.Name}: {item.GetValue(obj).ToString()} |";
+            }
+            return fieldStr;
+        }
+    }
+
     public static class EnumExtensions
     {   
         public static T CycleValues<T>(this T src) where T : Enum

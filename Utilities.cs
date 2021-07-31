@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 
 namespace NEINGames.Utilities
 {
-
     public static class Vector2Utilities 
     {
 
