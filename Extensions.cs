@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NEINGames.Utilities;
 
-// more extensions:
+// more extension ideas:
 // https://gist.github.com/omgwtfgames/f917ca28581761b8100f
 // https://github.com/dracolytch/DracoSoftwareExtensionsForUnity
 
