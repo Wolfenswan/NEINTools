@@ -11,8 +11,9 @@ using NEINGames.Utilities;
 namespace NEINGames.Extensions
 {
     public static class ObjectExtensions
-    {
-        public static string FieldsToStrings(this object obj)
+    {   
+        #if UNITY_EDITOR // Can be a pain when compiling, especially to web
+        public static string FieldsToString(this object obj)
         {
             string fieldStr = "";
             foreach (FieldInfo item in obj.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance))
@@ -21,6 +22,7 @@ namespace NEINGames.Extensions
             }
             return fieldStr;
         }
+        #endif
     }
 
     public static class EnumExtensions
