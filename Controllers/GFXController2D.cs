@@ -12,6 +12,7 @@ public class GFXController2D : MonoBehaviour
     Animator _animator;
     SpriteRenderer _spriteRenderer;
     int _currentAnimationHash;
+    float _defaultSpeed;
 
     public Color Color {get=>_spriteRenderer.color;}
     public float SpriteWidth{get => _spriteRenderer.sprite.border.x + _spriteRenderer.sprite.border.z;}
@@ -23,6 +24,7 @@ public class GFXController2D : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        _defaultSpeed = _animator.speed;
     }
 
     public void ChangeAnimation (int newAnimationHash) 
@@ -46,7 +48,21 @@ public class GFXController2D : MonoBehaviour
         _spriteRenderer.color = color;
     } 
 
-    public void SetAnimatorFloat(string name, float value) => _animator.SetFloat(name, value);
+    public void SetAnimatorVariable(string name, dynamic value) 
+    {
+        var type = value.GetType();
+        if (type == typeof(bool))
+            _animator.SetBool(name, value);
+        else if (type == typeof(int))
+            _animator.SetInteger(name, value);
+        else if (type == typeof(float))
+            _animator.SetFloat(name, value);
+        else
+            Debug.LogWarning($"Unknown value type {value.GetType()}");
+    }
+
+    public void SetAnimatorSpeed(float speed) => _animator.speed = speed;
+    public void ResetAnimatorSpeed() => _animator.speed = _defaultSpeed;
 
     void RaiseAnimationStartedEvent(AnimationEvent animEvent) 
     {
